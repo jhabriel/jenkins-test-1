@@ -1,2 +1,2 @@
-# jenkins-test-1
+# jenkins-testing
 First try to build a job in jenkins
