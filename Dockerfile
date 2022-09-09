@@ -1,10 +1,12 @@
 FROM python:3.9-slim
 
+RUN apt-get update
+RUN apt-get install git
+
 COPY . /app
 WORKDIR /app
 
 # STEP 1: Install git
-RUN apt-get install git
 
 # Step 2: Install porepy requirements
 RUN pip install --upgrade pip
