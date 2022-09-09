@@ -25,7 +25,7 @@ RUN git clone https://github.com/pmgbergen/porepy.git ${POREPY_SRC}
 # STEP 4: Enter source directory and install porepy (no need to install with -e flag)
 WORKDIR ${POREPY_SRC}
 RUN git checkout develop
-RUN pip install .
+RUN pip install --user -e .
 
 # Step 5: Go to the tests folder and run pytest
 WORKDIR ${POREPY_TST}/unit
