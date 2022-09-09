@@ -1,7 +1,5 @@
-FROM python:3-alpine
+FROM python:3.9-slim
 
 # Step 1: Install porepy requirements
-RUN apk add --update make cmake gcc g++ gfortran
-RUN apk add --update python py-pip python-dev
 RUN pip install --upgrade pip
 RUN pip install numpy
