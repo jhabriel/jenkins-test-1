@@ -32,6 +32,7 @@ ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 
 # Step 5: Go to the tests folder and run pytest
 WORKDIR ${POREPY_TST}/unit
-RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
+#RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
+RUN ["pytest", "-v", "test_time_step_control.py"]
 WORKDIR ${POREPY_HOME}
 CMD tail -f /dev/null
