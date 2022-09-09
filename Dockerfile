@@ -20,4 +20,4 @@ RUN pip install -r requirements-dev.txt
 # Step 3: Clone and install porepy
 WORKDIR POREPY_HOME
 RUN git clone https://github.com/pmgbergen/porepy.git .
-# RUN pip install porepy
+RUN pip install porepy
