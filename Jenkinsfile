@@ -11,7 +11,7 @@ pipeline{
             steps {
                 echo "Building docker image..."
                 sh """
-                    docker build -t porepy-docker-image -f DockerFile .
+                    docker build -t porepy-docker-image -f Dockerfile .
                 """
                 echo "Done"
             }
