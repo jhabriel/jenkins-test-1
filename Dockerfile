@@ -6,7 +6,7 @@ ENV POREPY_TST=${POREPY_SRC}/tests
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
-RUN apt-get install -y wget vim bzip2 git gcc libglu1-mesa libxrender1 libxcursor1 libxft2 libxinerama1 ffmpeg libgl1-mesa-glx libsm6 libxext6 
+RUN apt-get install -y wget vim bzip2 git gcc libglu1-mesa libxrender1 libxcursor1 libxft2 libxinerama1 ffmpeg libgl1-mesa-glx libsm6 libxext6
 
 # Step 2: Install porepy requirements (development version)
 # Get the PorePy requirements-dev file (we'll install the full development
@@ -31,8 +31,8 @@ RUN pip install --user -e .
 ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 
 # Step 5: Go to the tests folder and run pytest
-WORKDIR ${POREPY_TST}/unit
+WORKDIR ${POREPY_TST}
 #RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
-RUN ["pytest", "-v", "test_time_step_control.py"]
+RUN pytest
 WORKDIR ${POREPY_HOME}
 CMD tail -f /dev/null
