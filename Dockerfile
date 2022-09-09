@@ -2,6 +2,7 @@ FROM python:3.9-slim
 
 ENV POREPY_HOME /home/porepy
 ENV POREPY_SRC = ${POREPY_HOME}/pp
+ENV POREPY_TST = ${POREPY_SRC}/tests
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
@@ -17,7 +18,16 @@ RUN wget https://raw.githubusercontent.com/pmgbergen/porepy/develop/requirements
 RUN pip install --upgrade pip
 RUN pip install -r requirements-dev.txt
 
-# Step 3: Clone and install porepy
-WORKDIR POREPY_HOME
-RUN git clone https://github.com/pmgbergen/porepy.git .
-RUN pip install porepy
+# Step 3: Clone the porepy repo (dev branch)
+WORKDIR ${POREPY_HOME}
+RUN git clone https://github.com/pmgbergen/porepy.git ${POREPY_SRC}
+
+# STEP 4: Enter source directory and install porepy (no need to install with -e flag)
+WORKDIR ${POREPY_SRC}
+RUN git checkout develop
+RUN pip install .
+
+# Step 5: Go to the tests folder and run pytest
+#WORKDIR ${POREPY_TST}
+#RUN pytest
+#WORKDIR POREPY_HOME
