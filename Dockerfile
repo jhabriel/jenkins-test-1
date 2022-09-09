@@ -1,7 +1,7 @@
 FROM ubuntu
 
 # Step 1: Install porepy requirements
-RUN pip --version
+RUN apk add --update make cmake gcc g++ gfortran
+RUN apk add --update python py-pip python-dev
 RUN pip install --upgrade pip
-RUN pip --version
-RUN pip install requests numpy==1.20.0
+RUN pip install numpy
