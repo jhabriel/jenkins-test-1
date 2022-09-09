@@ -3,9 +3,16 @@ FROM python:3.9-slim
 ENV POREPY_HOME /home/porepy
 ENV POREPY_SRC = ${POREPY_HOME}/pp
 
-# Step 1: Install git
+# Step 1: Install git, wget, and bzip2
 RUN apt-get update
-RUN apt-get install -y git
+RUN apt-get install -y git wget bzip2
+
+# Get the PorePy requirements-dev file (we'll install the full development
+# version, the overhead in doing so compared to just the run requirements
+# is not too big)
+ENV TMP_DIR /tmp
+WORKDIR ${TMP_DIR}
+RUN wget https://raw.githubusercontent.com/pmgbergen/porepy/develop/requirements-dev.txt
 
 # Step 2: Move to a proper folder
 
