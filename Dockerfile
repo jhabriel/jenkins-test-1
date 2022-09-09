@@ -5,7 +5,7 @@ ENV POREPY_SRC = ${POREPY_HOME}/pp
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
-RUN apt-get install -y git wget bzip2
+RUN apt-get install -y git wget
 
 # Get the PorePy requirements-dev file (we'll install the full development
 # version, the overhead in doing so compared to just the run requirements
