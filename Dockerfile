@@ -17,9 +17,9 @@ RUN wget https://raw.githubusercontent.com/pmgbergen/porepy/develop/requirements
 # Step 2: Move to a proper folder
 
 # Step 3: Install porepy requirements
-WORKDIR POREPY_HOME
+#WORKDIR POREPY_HOME
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r requirements-dev.txt
 
 # Step 4: Download porepy
 # RUN git clone https://github.com/pmgbergen/porepy.git .
