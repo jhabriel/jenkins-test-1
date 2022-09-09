@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM ubuntu
 
 # Step 1: Install porepy requirements
 RUN pip --version
