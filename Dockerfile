@@ -32,7 +32,7 @@ ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 
 # Step 5: Go to the tests folder and run pytest
 WORKDIR ${POREPY_TST}
-#RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
-RUN pytest
+RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
+#RUN pytest
 WORKDIR ${POREPY_HOME}
 CMD tail -f /dev/null
