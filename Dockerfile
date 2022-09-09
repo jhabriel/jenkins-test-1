@@ -1,8 +1,8 @@
 FROM python:3.9-slim
 
 ENV POREPY_HOME /home/porepy
-ENV POREPY_SRC = ${POREPY_HOME}/pp
-ENV POREPY_TST = ${POREPY_SRC}/tests
+ENV POREPY_SRC=${POREPY_HOME}/pp
+ENV POREPY_TST=${POREPY_SRC}/tests
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
