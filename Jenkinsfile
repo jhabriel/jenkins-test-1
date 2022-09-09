@@ -2,14 +2,18 @@
 
 pipeline{
 
-    agent any
+    agent { label "linux" }
 
     stages {
 
         stage("build") {
 
             steps {
-                echo 'building porepy ...'
+                echo "Building docker image..."
+                sh """
+                    docker build -t porepy-docker-image -f DockerFile .
+                """
+                echo "Done"
             }
         }
 
