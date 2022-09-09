@@ -28,6 +28,6 @@ RUN git checkout develop
 RUN pip install .
 
 # Step 5: Go to the tests folder and run pytest
-#WORKDIR ${POREPY_TST}
-#RUN pytest
-#WORKDIR POREPY_HOME
+WORKDIR ${POREPY_TST}
+RUN pytest
+WORKDIR POREPY_HOME
