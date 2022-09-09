@@ -27,6 +27,9 @@ WORKDIR ${POREPY_SRC}
 RUN git checkout develop
 RUN pip install --user -e .
 
+# Add PorePy home to the pythonpath. This may or may not be necessary.
+ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
+
 # Step 5: Go to the tests folder and run pytest
 WORKDIR ${POREPY_TST}/unit
 RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
