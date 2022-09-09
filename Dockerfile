@@ -4,7 +4,7 @@ COPY . /app
 WORKDIR /app
 
 # STEP 1: Install git
-RUN sudo apt-get install git
+RUN apt-get install git
 
 # Step 2: Install porepy requirements
 RUN pip install --upgrade pip
