@@ -30,5 +30,5 @@ RUN pip install --user -e .
 # Step 5: Go to the tests folder and run pytest
 WORKDIR ${POREPY_TST}/unit
 RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
-WORKDIR POREPY_HOME
+WORKDIR ${POREPY_HOME}
 CMD tail -f /dev/null
