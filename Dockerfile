@@ -6,7 +6,7 @@ ENV POREPY_TST=${POREPY_SRC}/tests
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
-RUN apt-get install -y git wget # bzip2
+RUN apt-get install -y wget vim bzip2 git gcc libglu1-mesa libxrender1 libxcursor1 libxft2 libxinerama1 ffmpeg libgl1-mesa-glx libsm6 libxext6 
 
 # Step 2: Install porepy requirements (development version)
 # Get the PorePy requirements-dev file (we'll install the full development
