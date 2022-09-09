@@ -4,4 +4,4 @@ FROM python:3.9-alpine
 RUN pip --version
 RUN pip install --upgrade pip
 RUN pip --version
-RUN pip install requests numpy
+RUN pip install requests numpy=1.20.0
