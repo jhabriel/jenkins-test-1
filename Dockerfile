@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-MAINTAINER PorePy Maintainance Team
+MAINTAINER PorePy Development Team
 
 ENV POREPY_HOME /home/porepy
 ENV POREPY_SRC=${POREPY_HOME}/pp
@@ -40,7 +40,7 @@ ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 # RUN ["pytest", "-v", "--junitxml=reports/results_porepy.xml"]
 
 # Step 6: Run functional tests
-COPY . /tests/functional
+# COPY . /tests/functional
 WORKDIR /tests/functional
 RUN ["pytest", "-v", "--junitxml=reports/results.xml"]
 
