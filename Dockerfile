@@ -36,13 +36,13 @@ RUN pip install --user -e .
 ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 
 # Step 5: Run all PorePy tests
-WORKDIR ${POREPY_TST}
-RUN ["pytest", "-v", "--junitxml=reports/results_porepy.xml"]
+# WORKDIR ${POREPY_TST}
+# RUN ["pytest", "-v", "--junitxml=reports/results_porepy.xml"]
 
 # Step 6: Run functional tests
 COPY . /tests/functional
 WORKDIR /tests/functional
-RUN ["pytest", "-v", "--junitxml=reports/results_functional.xml"]
+RUN ["pytest", "-v", "--junitxml=reports/results.xml"]
 
 # Step 7: Keep the container running after so that we are allowed to copy the resutls
 CMD tail -f /dev/null
