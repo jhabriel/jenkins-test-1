@@ -1,8 +1,13 @@
 FROM python:3.9-slim
 
+MAINTAINER PorePy Maintainance Team
+
 ENV POREPY_HOME /home/porepy
 ENV POREPY_SRC=${POREPY_HOME}/pp
 ENV POREPY_TST=${POREPY_SRC}/tests
+
+ENV TST /tests
+ENV FUNCTIONAL_TST=${TST}/functional
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
@@ -30,9 +35,14 @@ RUN pip install --user -e .
 # Add PorePy home to the pythonpath. This may or may not be necessary.
 ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 
-# Step 5: Go to the tests folder and run pytest
+# Step 5: Run all PorePy tests
 WORKDIR ${POREPY_TST}
-RUN ["pytest", "-v", "--junitxml=reports/result.xml"]
-#RUN pytest
-WORKDIR ${POREPY_HOME}
+RUN ["pytest", "-v", "--junitxml=reports/results_porepy.xml"]
+
+# Step 6: Run functional tests
+COPY . /tests/functional
+WORKDIR /tests/functional
+RUN ["pytest", "-v", "--junitxml=reports/results_functional.xml"]
+
+# Step 7: Keep the container running after so that we are allowed to copy the resutls
 CMD tail -f /dev/null
