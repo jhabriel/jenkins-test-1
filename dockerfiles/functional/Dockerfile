@@ -41,7 +41,7 @@ ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
 
 # Step 6: Run functional tests
 # COPY . /tests/functional
-WORKDIR /tests/functional
+WORKDIR /tests
 RUN ["pytest", "-v", "--junitxml=reports/results.xml"]
 
 # Step 7: Keep the container running after so that we are allowed to copy the resutls
