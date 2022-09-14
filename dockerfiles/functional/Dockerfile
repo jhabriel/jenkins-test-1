@@ -49,7 +49,7 @@ ENV PYTHONPATH $PPTESTS_HOME:$PYTHONPATH
 
 # Step 6: Run tests in porepy-tests
 WORKDIR ${PPTESTS_TST}
-RUN pytest -v --cache-clear --disable-warnings --junitxml=reports/results.xml || true
+RUN pytest -v --cov-report --cache-clear --disable-warnings --junitxml=reports/results.xml || true
 
 # Step 6: Run functional tests
 #COPY . /tests
