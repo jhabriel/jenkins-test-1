@@ -41,6 +41,7 @@ ENV PYTHONPATH $PP_HOME:$PYTHONPATH
 # STEP 5: Clone the porepy-tests repo (dev branch)
 WORKDIR ${PPTESTS_HOME}
 RUN git clone https://github.com/jhabriel/jenkins-testing.git ${PPTESTS_SRC}
+WORKDIR ${PPTESTS_SRC}
 RUN git checkout dev
 
 # Add porepy-tests to the pythonpath. This may or may not be necessary.
