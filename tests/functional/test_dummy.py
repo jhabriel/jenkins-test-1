@@ -12,4 +12,4 @@ class TestDummy:
 
     def test_check_fail_test(self):
         """Make a failing test on purpose"""
-        assert 1 == 1
+        assert 1 == 7
