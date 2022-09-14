@@ -2,12 +2,15 @@ FROM python:3.9-slim
 
 MAINTAINER PorePy Development Team
 
-ENV POREPY_HOME /home/porepy
-ENV POREPY_SRC=${POREPY_HOME}/pp
-ENV POREPY_TST=${POREPY_SRC}/tests
+# porepy directories
+ENV PP_HOME /home/porepy
+ENV PP_SRC=${PP_HOME}/pp
+ENV PP_TST=${POREPY_SRC}/tests
 
-ENV TST /tests
-ENV FUNCTIONAL_TST=${TST}/functional
+# porepy-tests directories
+ENV PPTESTS_HOME /home/porepy-tests
+ENV PPTESTS_SRC=${PPTESTS_HOME}/pp-tests
+ENV PPTESTS_TST=${PPTESTS_SRC}/tests
 
 # Step 1: Install git, wget, and bzip2
 RUN apt-get update
@@ -23,26 +26,33 @@ RUN wget https://raw.githubusercontent.com/pmgbergen/porepy/develop/requirements
 RUN pip install --upgrade pip
 RUN pip install -r requirements-dev.txt
 
-# Step 3: Clone the porepy repo (dev branch)
-WORKDIR ${POREPY_HOME}
-RUN git clone https://github.com/pmgbergen/porepy.git ${POREPY_SRC}
+# Step 3: Clone the porepy repo (develop branch)
+WORKDIR ${PP_HOME}
+RUN git clone https://github.com/pmgbergen/porepy.git ${PP_SRC}
 
 # STEP 4: Enter source directory and install porepy (no need to install with -e flag)
-WORKDIR ${POREPY_SRC}
+WORKDIR ${PP_SRC}
 RUN git checkout develop
 RUN pip install --user -e .
 
-# Add PorePy home to the pythonpath. This may or may not be necessary.
-ENV PYTHONPATH $POREPY_HOME:$PYTHONPATH
+# Add porepy home to the pythonpath. This may or may not be necessary.
+ENV PYTHONPATH $PP_HOME:$PYTHONPATH
 
-# Step 5: Run all PorePy tests
-# WORKDIR ${POREPY_TST}
-# RUN ["pytest", "-v", "--junitxml=reports/results_porepy.xml"]
+# STEP 5: Clone the porepy-tests repo (dev branch)
+WORKDIR ${PPTESTS_HOME}
+RUN git clone https://github.com/jhabriel/jenkins-testing.git ${PPTESTS_SRC}
+RUN git checkout dev
+
+# Add porepy-tests to the pythonpath. This may or may not be necessary.
+ENV PYTHONPATH $PPTESTS_HOME:$PYTHONPATH
+
+# Step 6: Run tests in porepy-tests
+WORKDIR ${PPTESTS_TST}
+RUN ["pytest", "-v", "--junitxml=reports/results.xml"]
 
 # Step 6: Run functional tests
-# COPY . /tests/functional
-WORKDIR /tests
-RUN ["pytest", "-v", "--junitxml=reports/results.xml"]
+#COPY . /tests
+#WORKDIR /tests
 
 # Step 7: Keep the container running after so that we are allowed to copy the resutls
 CMD tail -f /dev/null
