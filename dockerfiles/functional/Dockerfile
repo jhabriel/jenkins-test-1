@@ -49,12 +49,7 @@ ENV PYTHONPATH $PPTESTS_HOME:$PYTHONPATH
 
 # Step 6: Run tests in porepy-tests
 WORKDIR ${PPTESTS_TST}
-RUN ["pytest",
-     "--cache-clear",
-     "--disable-warnings",
-     "--verbose",
-     "--junitxml=reports/results.xml",
-      " || true"]
+RUN ["pytest", "--cache-clear", "--disable-warnings", "--verbose", "--junitxml=reports/results.xml", " || true"]
 
 # Step 6: Run functional tests
 #COPY . /tests
